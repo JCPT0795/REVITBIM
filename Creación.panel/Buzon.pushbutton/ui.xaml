@@ -1,0 +1,241 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Importar CSV"
+        Width="1180"
+        Height="720"
+        MinWidth="560"
+        MinHeight="320"
+        ResizeMode="CanResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI"
+        FontSize="13"
+        Background="#F3F4F6">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="Padding" Value="14,5"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="MinHeight" Value="28"/>
+            <Setter Property="Margin" Value="0,4,0,10"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="AutoGenerateColumns" Value="True"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid x:Name="PanelModo" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Selecciona como vendra tu CSV:"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,18"/>
+
+            <Button x:Name="BtnModeSyp"
+                    Grid.Row="1"
+                    Content="Opcion 1: Usar CSV con 3 columnas SYP"
+                    Height="38"
+                    Width="470"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,10"/>
+
+            <Button x:Name="BtnModeNoSyp"
+                    Grid.Row="2"
+                    Content="Opcion 2: Usar CSV sin esas 3 columnas"
+                    Height="38"
+                    Width="470"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,10"/>
+
+            <StackPanel Grid.Row="4"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button x:Name="BtnModeCancel"
+                        Content="Cancelar"
+                        IsCancel="True"
+                        Width="110"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="PanelEjemplo" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Formato requerido del CSV:"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,12"/>
+
+            <DataGrid x:Name="ExampleGrid"
+                      Grid.Row="1"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="True"
+                      CanUserSortColumns="False"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"/>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,14,0,0">
+                <Button x:Name="BtnExampleOk"
+                        Content="Aceptar"
+                        IsDefault="True"
+                        Width="110"/>
+                <Button x:Name="BtnExampleCancel"
+                        Content="Cancelar"
+                        IsCancel="True"
+                        Width="110"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="PanelSeleccion" Visibility="Collapsed" MaxWidth="560" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Seleccionar categoria, familia y tipo"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,18"/>
+
+            <TextBlock Grid.Row="1" Text="Categoria:"/>
+            <ComboBox x:Name="CboCategoria"
+                      Grid.Row="2"
+                      Width="420"
+                      HorizontalAlignment="Left"/>
+
+            <TextBlock Grid.Row="3" Text="Familia:" Margin="0,2,0,0"/>
+            <StackPanel Grid.Row="4">
+                <ComboBox x:Name="CboFamilia"
+                          Width="420"
+                          HorizontalAlignment="Left"/>
+                <TextBlock Text="Tipo:" Margin="0,2,0,0"/>
+                <ComboBox x:Name="CboTipo"
+                          Width="420"
+                          HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="5"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,14,0,0">
+                <Button x:Name="BtnSelectionOk"
+                        Content="Aceptar"
+                        IsDefault="True"
+                        Width="110"/>
+                <Button x:Name="BtnSelectionCancel"
+                        Content="Cancelar"
+                        IsCancel="True"
+                        Width="110"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="PanelRevision" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="TxtReviewHint"
+                       Grid.Row="0"
+                       Text="Puedes modificar comentario, coordenadas, cota, categoria, familia y tipo antes de crear."
+                       Margin="0,0,0,10"/>
+
+            <DataGrid x:Name="ReviewGrid"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="False"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"/>
+
+            <Border Grid.Row="2"
+                    Background="#FFFFFF"
+                    BorderBrush="#D1D5DB"
+                    BorderThickness="1"
+                    Padding="10"
+                    Margin="0,12,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Categoria de la fila seleccionada"/>
+                        <ComboBox x:Name="RowCategoria"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                        <TextBlock Text="Familia"/>
+                        <ComboBox x:Name="RowFamilia"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Margin="0,0,10,0">
+                        <TextBlock Text="Tipo"/>
+                        <ComboBox x:Name="RowTipo"/>
+                    </StackPanel>
+
+                    <Button x:Name="BtnApplyTypeToRow"
+                            Grid.Column="3"
+                            Content="Aplicar a fila"
+                            Width="120"
+                            VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,14,0,0">
+                <Button x:Name="BtnReviewCreate"
+                        Content="Crear elementos"
+                        IsDefault="True"
+                        Width="140"/>
+                <Button x:Name="BtnReviewCancel"
+                        Content="Cancelar"
+                        IsCancel="True"
+                        Width="110"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
